@@ -1,0 +1,3 @@
+controllers:
+    resource: ../../src/Adapters/Symfony/Controller/
+    type: annotation

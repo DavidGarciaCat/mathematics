@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <p>&nbsp;</p>
+
+    <div class="alert alert-primary" role="alert">
+        Type the two numbers, then click the button to run the desired arithmetical or bitwise operation:
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="card">
+                <div class="card-header">
+                    Input
+                </div>
+                <div class="card-body">
+                    {{ form_start(form) }}
+                        <div class="form-group">
+                            {{ form_label(form.number1) }}
+                            {{ form_widget(form.number1, {'attr': {'class': 'form-control'}}) }}
+                            <div>{{ form_errors(form.number1) }}</div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.number2) }}
+                            {{ form_widget(form.number2, {'attr': {'class': 'form-control'}}) }}
+                            <div>{{ form_errors(form.number2) }}</div>
+                        </div>
+                        <div class="form-group" style="display: none;">
+                            {{ form_label(form.endpoint) }}
+                            {{ form_widget(form.endpoint, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    <div>{{ form_errors(form.endpoint) }}</div>
+                    <div>{{ form_errors(form) }}</div>
+                    {{ form_start(form) }}
+                </div>
+                <div class="card-footer text-center">
+                    <a class="btn btn-secondary" href="{{ url('api_arithmetical_add')|replace({'localhost:8000': 'nginx'}) }}">+</a>
+                    <a class="btn btn-secondary" href="{{ url('api_arithmetical_sub')|replace({'localhost:8000': 'nginx'}) }}">−</a>
+                    <a class="btn btn-secondary" href="{{ url('api_arithmetical_mul')|replace({'localhost:8000': 'nginx'}) }}">×</a>
+                    <a class="btn btn-secondary" href="{{ url('api_arithmetical_div')|replace({'localhost:8000': 'nginx'}) }}">÷</a>
+                    <a class="btn btn-secondary" href="{{ url('api_bitwise_and')|replace({'localhost:8000': 'nginx'}) }}">AND</a>
+                    <a class="btn btn-secondary" href="{{ url('api_bitwise_or')|replace({'localhost:8000': 'nginx'}) }}">OR</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+
+            <div class="card">
+                <div class="card-header">
+                    Output
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-{{ alert }}" role="alert">
+                        {{ result }}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(function () {
+            $('a').click(function (e) {
+                e.preventDefault();
+                var href = $(this).attr('href');
+                $('#{{ form.endpoint.vars.id }}').val(href);
+                $('form').submit();
+            });
+        });
+    </script>
+{% endblock %}
