@@ -1,5 +1,8 @@
 # Mathematics
 
+[![Build Status](https://scrutinizer-ci.com/g/DavidGarciaCat/mathematics/badges/build.png?b=master)](https://scrutinizer-ci.com/g/DavidGarciaCat/mathematics/build-status/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/DavidGarciaCat/mathematics/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/DavidGarciaCat/mathematics/?branch=master)
+
 ## Prerequisites
 
 **Docker** https://docs.docker.com/install/
